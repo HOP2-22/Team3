@@ -4,8 +4,7 @@
   "description": "Blog website`s rest api",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=production node server",
-    "dev": "nodemon server"
+    "start": "nodemon server"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +17,7 @@
   "dependencies": {
     "bcrypt": "^5.1.0",
     "colors": "^1.4.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-fileupload": "^1.4.0",

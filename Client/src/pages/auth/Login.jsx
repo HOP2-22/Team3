@@ -1,7 +1,7 @@
 import React from "react";
 
-const Contact = () => {
-  return <div className="">Contact</div>;
+const Login = () => {
+  return <div className="">Login</div>;
 };
 
-export default Contact;
+export default Login;

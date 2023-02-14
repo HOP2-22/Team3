@@ -12,6 +12,11 @@ import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Signup";
 import ForgetPassword from "./pages/auth/ForgetPassword";
 import Products from "./pages/Products";
+import AdminHome from "./pages/admin/AdminHome";
+import AdminUsers from "./pages/admin/AdminUsers";
+import AdminContacts from "./pages/admin/AdminContacts";
+import UserPosts from "./pages/UserPosts";
+import Post from "./pages/Post";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -23,13 +28,21 @@ root.render(
             <Route path="/" element={<Home />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/services" element={<Service />} />
-            <Route path="/register/login" element={<Login />} />
-            <Route path="/register/signup" element={<Signup />} />
-            <Route
-              path="/register/forgetpassword"
-              element={<ForgetPassword />}
-            />
-            <Route path="/products" element={<Products />} />
+            <Route path="register">
+              <Route path="login" element={<Login />} />
+              <Route path="signup" element={<Signup />} />
+              <Route path="forgetpassword" element={<ForgetPassword />} />
+            </Route>
+            <Route path="products">
+              <Route path="" element={<Products />} />
+              <Route path=":id" element={<UserPosts />} />
+              <Route path="post" element={<Post />} />
+            </Route>
+            <Route path="admin">
+              <Route path="" element={<AdminHome />} />
+              <Route path="users" element={<AdminUsers />} />
+              <Route path="contacts" element={<AdminContacts />} />
+            </Route>
           </Routes>
         </Layout>
       </Provider>

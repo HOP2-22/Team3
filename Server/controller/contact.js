@@ -1,18 +1,48 @@
-const MyError = require("../utils/myError");
-const asyncHandler = require("../middleWare/asyncHandler");
+//Хуудаслалт
 const paginate = require("../utils/paginate");
 
-const Contacts = require("../models/comment");
+const Contact = require("../models/contact");
+
+exports.ExampleCode = async (req, res, next) => {
+  const Example = {};
+  try {
+    const example = await Example.find({});
+
+    res.status(200).json({
+      success: true,
+      data: example,
+      message: "жишээ api function иймэрхүү маягаар code oo бичнэ",
+    });
+  } catch (error) {
+    //Хэрэв алдаа гарвал error middle ware ажилна
+    //Хаана байгаа ../middleware/error.js
+    next(error);
+  }
+};
 
 exports.getContacts = async (req, res, next) => {
   try {
-    const contacts = await Contacts.find({});
+    const contacts = await Contact.find({});
 
     res.status(200).json({
       success: true,
       data: contacts,
-      message: "амжилттай холбогдох хэрэглэгчдийн мэдээлэлийг авлаа",
+      message: "амжилттай холбогдох хаягуудийн мэдээлэлийг авлаа",
     });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.createContact = async (req, res, next) => {
+  try {
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.deleteContact = async (req, res, next) => {
+  try {
   } catch (error) {
     next(error);
   }
