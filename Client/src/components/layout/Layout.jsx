@@ -1,14 +1,15 @@
-import React from "react";
+import Footer from "./footer/Footer";
+import Navbar from "./nav/Navbar";
 
 const Layout = ({ children }) => {
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
-      <div className="">
-        <nav>Navbar</nav>
-        <main>{children}</main>
+    <>
+      <div className={`flex flex-col justify-between min-h-screen`}>
+        <Navbar />
+        {children}
+        <Footer />
       </div>
-      <footer>Footer</footer>
-    </div>
+    </>
   );
 };
 
