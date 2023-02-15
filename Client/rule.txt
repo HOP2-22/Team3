@@ -2,3 +2,14 @@
 2.Зөвхөн arrow finction бас default export ашиглана
 3.Style бичихдээ className хэрэглэж css бичнэ
 4.Component Css FileName-ийг хамаа намаагүй өгөхгүй
+
+1.Contact
+email,
+text,
+
+2.comment
+craetedDate
+text
+commentWriter-comment bichsen useriin name bolon id
+
+
