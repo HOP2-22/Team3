@@ -4,7 +4,7 @@
   "description": "Blog website`s rest api",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server"
+    "start": "nodemon start"
   },
   "keywords": [],
   "author": "",
