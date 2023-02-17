@@ -1,9 +1,0 @@
-.HowItWorks {
-display: flex;
-text-align: justify;
-flex-direction: column;
-max-width: 375px;
-background-color: gray;
-color: black;
-justify-content: center;
-}

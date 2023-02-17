@@ -1,0 +1,111 @@
+@media only screen and (max-width: 640px) {
+  .Container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .con {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.All {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.Container {
+  display: flex;
+  justify-content: space-around;
+  gap: 50px;
+}
+
+.HowItWorks {
+  display: flex;
+  justify-content: center;
+  text-align: justify;
+  flex-direction: column;
+  width: 100vw;
+  background-color: gray;
+  color: black;
+  border: 0.1px black solid;
+  border-radius: 5px;
+  gap: 15px;
+}
+
+.Text-BigText {
+  text-align: center;
+  font-size: xx-large;
+}
+
+.ExampleCard {
+  width: 100vw;
+  border: 0.1px black solid;
+  background-color: gray;
+  font-size: xx-large;
+  border-radius: 5px;
+}
+
+.Schedule {
+  width: 100vw;
+  border: 0.1px black solid;
+  background-color: gray;
+  border-radius: 5px;
+}
+
+.ScheduleText {
+  display: flex;
+  justify-content: center;
+  font-size: xx-large;
+  text-align: justify;
+}
+
+.TextSche {
+  font-size: x-large;
+  text-align: justify;
+}
+
+.SimpleTask {
+  width: 100vw;
+  border: 0.1px black solid;
+  background-color: gray;
+  border-radius: 5px;
+  height: 416px;
+}
+
+.SimpleTaskText {
+  font-size: xx-large;
+}
+
+.TextSim {
+  font-size: x-large;
+  text-align: justify;
+}
+
+.TeamWork {
+  width: 100vw;
+  border: 0.1px black solid;
+  background-color: gray;
+  border-radius: 5px;
+  height: 416px;
+}
+
+.TeamWorkText {
+  font-size: xx-large;
+}
+
+.TeamWorkText2 {
+  font-size: x-large;
+  text-align: justify;
+}
+
+.con {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 50px;
+
+}
