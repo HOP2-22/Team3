@@ -23,15 +23,15 @@ const {
 
 const router = express.Router();
 
-router.route("/admin/getUsers").get(getUsers);
-router.route("/admin/deleteUser").delete(deleteUser);
+router.route("/getUsers").get(getUsers);
+router.route("/deleteUser/:id").delete(deleteUser);
 
-router.route("/").get(getUser);
-router.route("/:id").get(updateUser);
+router.route("/:id").get(getUser);
+router.route("/reset/:id").put(updateUser);
 
 router.route("/auth/signup").post(register);
 router.route("/auth/login").post(login);
-router.route("/auth/updatePassword").post(updatePass);
+router.route("/auth/updatePassword").put(updatePass);
 router.route("/auth/verify").post(verifyUser);
 
 module.exports = router;

@@ -8,7 +8,7 @@ const comment = require("./routes/comment");
 const contact = require("./routes/contact");
 const post = require("./routes/post");
 const user = require("./routes/user");
-const errorHandler = require("./middleWare/error");
+// const errorHandler = require("./middleWare/error");
 
 connectDB();
 
@@ -23,15 +23,15 @@ app.use("/comment", comment);
 app.use("/contact", contact);
 app.use("/post", post);
 app.use("/user", user);
-app.use(errorHandler);
+// app.use(errorHandler);
 
 app.listen(process.env.PORT, () => {
   console.log(`${process.env.PORT}-дээр ажиллаж эхэллээ`);
 });
 
-process.on("unhandledRejection", (err, promise) => {
-  console.log(`aldaa garjee: ${err.message}`.red.underline);
-  server.close(() => {
-    process.exit(1);
-  });
-});
+// process.on("unhandledRejection", (err, promise) => {
+//   console.log(`aldaa garjee: ${err.message}`.red.underline);
+//   // server.close(() => {
+//   //   process.exit(1);
+//   // });
+// });
