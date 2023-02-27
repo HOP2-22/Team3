@@ -36,6 +36,12 @@ exports.getContacts = async (req, res, next) => {
 
 exports.createContact = async (req, res, next) => {
   try {
+    const createContact = await Contact.create(req.body);
+    res.status(200).json({
+      success: true,
+      data: createContact,
+      message: "ta amjilttai holbogdlo",
+    });
   } catch (error) {
     next(error);
   }
@@ -43,6 +49,12 @@ exports.createContact = async (req, res, next) => {
 
 exports.deleteContact = async (req, res, next) => {
   try {
+    const _id = req.params.id
+    await Contact.deleteOne({_id})
+    res.status(200).json({
+      success : true,
+      message : "contact ustla"
+    })
   } catch (error) {
     next(error);
   }
