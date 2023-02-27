@@ -54,6 +54,21 @@ const HowItWorks = () => {
               communication into one place.
             </div>
           </div>
+          <div className="YtVideo">
+            <div className="YtVideoText">Youtube video for instructions</div>
+            <hr></hr>
+            <img
+              className="Img"
+              src="https://res.cloudinary.com/dw8hfvbgl/image/upload/v1677486956/Services/Rectangle_bqryua.png"
+              alt="w"
+            ></img>
+            <a
+              className="ButtonLink"
+              href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+            >
+              Click Here
+            </a>
+          </div>
         </div>
       </div>
     </div>
