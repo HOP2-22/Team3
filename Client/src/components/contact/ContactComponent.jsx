@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 function ContactComponent() {
+  const [nameValue, setNameValue] = useState("");
+  const [emailValue, setEmailValue] = useState("");
+  const [feedValue, setFeedValue] = useState("");
+  const createContact = async () => {
+    try {
+      await axios.post("http://localhost:8000/contact", {
+        name: { nameValue },
+        email: { emailValue },
+        text: { feedValue },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="main">
       <div className="contactingPart">
@@ -12,16 +28,41 @@ function ContactComponent() {
             facing!
           </div>
           <div className="input">
-            <input className="nameInput" placeholder="Write your Name" />
-            <input className="emailInput" placeholder="Email Address" />
+            <input
+              className="nameInput"
+              placeholder="Write your Name"
+              value={nameValue}
+              onChange={(event) => {
+                setNameValue(event.target.value);
+              }}
+            />
+            <input
+              className="emailInput"
+              placeholder="Email Address"
+              value={emailValue}
+              onChange={(event) => {
+                setEmailValue(event.target.value);
+              }}
+            />
             <textarea
               className="feedbackMessage"
               placeholder="Type your message here"
+              value={feedValue}
+              onChange={(event) => {
+                setFeedValue(event.target.value);
+              }}
             />
           </div>
         </div>
         <div className="buttonHolder">
-          <button className="submitButton">Submit</button>
+          <button
+            className="submitButton"
+            onClick={() => {
+              createContact();
+            }}
+          >
+            Submit
+          </button>
         </div>
       </div>
       <div className="imageHolder">
