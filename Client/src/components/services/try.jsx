@@ -5,7 +5,9 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import MediaCard from "./ExampleCard";
+import { Button } from "@mui/material";
 import "../../css/try.css";
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -17,10 +19,10 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function RowAndColumnSpacing() {
   return (
     <Box sx={{ width: "100%" }}>
-      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 0.5, sm: 2, md: 2 }}>
         <Grid className="container" xs={6}>
           <Item className="HowItWorks">
-            <Typography>How It Works</Typography>
+            <Typography className="How">How It Works</Typography>
             <hr></hr>
             <Typography className="texthow">
               You can make a post about your thoughts. People will agree or
@@ -34,7 +36,7 @@ export default function RowAndColumnSpacing() {
         </Grid>
         <Grid xs={6}>
           <Item className="ExampleCard">
-            <Typography>This is an example post in our site</Typography>
+            <Typography className="Post">This is an example post in our site</Typography>
             <MediaCard />
           </Item>
         </Grid>
@@ -69,10 +71,32 @@ export default function RowAndColumnSpacing() {
           </Item>
         </Grid>
         <Grid xs={6}>
-          <Item className="TeamWork"><Typography></Typography></Item>
+          <Item className="TeamWork">
+            <Typography className="TeamWorkText">
+              Your Hub for teamwork
+            </Typography>
+            <hr></hr>
+            <Typography className="TeamWorkText2">
+              {" "}
+              Give everyone you work with inside and outside your company a more
+              productive way to stay in sync. Respond faster with emoji, keep
+              conversations focused in channels, and simplify all your
+              communication into one place.
+            </Typography>
+          </Item>
         </Grid>
         <Grid xs={6}>
-          <Item>6</Item>
+          <Item className="YtVideo">
+            <Typography className="YtVideoText">
+              Youtube video for instructions
+            </Typography>{" "}
+            <img
+              className="Img"
+              src="https://res.cloudinary.com/dw8hfvbgl/image/upload/v1677486956/Services/Rectangle_bqryua.png"
+              alt="w"
+            ></img>
+      <Button href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Click Here</Button>
+          </Item>
         </Grid>
       </Grid>
     </Box>

@@ -8,62 +8,106 @@
   color: black;
   border: 1px black solid;
   border-radius: 5px;
-  gap: 15px;
+  height: 396px;
 }
 .ExampleCard {
-    display: flex;
-    justify-content: center;
-    text-align: justify;
-    flex-direction: column;
-    width: 314px;
-    background-color: white;
-    color: black;
-    border: 1px black solid;
-    border-radius: 5px;
-    gap: 15px;
+  display: flex;
+  justify-content: center;
+  text-align: justify;
+  flex-direction: column;
+  width: 314px;
+  background-color: white;
+  color: black;
+  border: 1px black solid;
+  border-radius: 5px;
+  gap: 15px;
+  height: 396px;
 }
 .Schedule {
-    display: flex;
-    justify-content: center;
-    text-align: justify;
-    flex-direction: column;
-    width: 314px;
-    background-color: white;
-    color: black;
-    border: 1px black solid;
-    border-radius: 5px;
-    gap: 15px;
-  }
-  .ScheduleText {
-    display: flex;
-    justify-content: center;
-    font-size: x-large;
-    text-align: justify;
-  }
-  .SimpleTask {
-    display: flex;
-    justify-content: center;
-    text-align: justify;
-    flex-direction: column;
-    width: 314px;
-    background-color: white;
-    color: black;
-    border: 1px black solid;
-    border-radius: 5px;
-    gap: 15px;
-  }
-  .SimpleTaskText {
-    font-size: x-large;
-  }
-  .TextSim {
-    font-size: large;
-    text-align: justify;
-  }
-  .texthow {
-    font-size: large;
-    text-align: justify;
-  }
-  .TextSche {
-    font-size: large;
-    text-align: justify;
-  }
+  display: flex;
+  justify-content: center;
+  text-align: justify;
+  flex-direction: column;
+  width: 314px;
+  background-color: white;
+  color: black;
+  border: 1px black solid;
+  border-radius: 5px;
+  gap: 15px;
+  height: 396px;
+}
+.ScheduleText {
+  display: flex;
+  justify-content: center;
+  font-size: x-large;
+  text-align: justify;
+}
+.SimpleTask {
+  display: flex;
+  justify-content: center;
+  text-align: justify;
+  flex-direction: column;
+  width: 314px;
+  background-color: white;
+  color: black;
+  border: 1px black solid;
+  border-radius: 5px;
+  gap: 15px;
+  height: 396px;
+}
+.SimpleTaskText {
+  font-size: x-large;
+}
+.TextSim {
+  font-size: large;
+  text-align: justify;
+}
+.texthow {
+  font-size: large;
+  text-align: justify;
+}
+.TextSche {
+  font-size: large;
+  text-align: justify;
+}
+.TeamWork {
+  display: flex;
+  justify-content: center;
+  text-align: justify;
+  flex-direction: column;
+  width: 314px;
+  background-color: white;
+  color: black;
+  border: 1px black solid;
+  border-radius: 5px;
+  gap: 15px;
+  height: 396px;
+}
+.YtVideo {
+  display: flex;
+  flex-direction: column;
+  width: 314px;
+  border: 1px black solid;
+  background-color: white;
+  border-radius: 5px;
+  gap: 15px;
+  height: 396px;
+}
+.How {
+  font-size: x-large;
+  text-align: justify;
+}
+.Post {
+  font-size: x-large;
+  text-align: justify;
+}
+.TeamWorkText {
+  font-size: x-large;
+}
+.TeamWorkText2 {
+  font-size: large;
+  text-align: justify;
+}
+.YtVideoText {
+  font-size: x-large;
+}
