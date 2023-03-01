@@ -1,0 +1,158 @@
+.input {
+  display: flex;
+  flex-direction: column;
+}
+.main {
+  flex-grow: 1;
+}
+.help {
+  margin-left: 25px;
+}
+.contactingPart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+.submitButton {
+  width: 231px;
+  height: 48px;
+  background: #5fc3ca;
+  border-radius: 10px;
+  color: white;
+  margin-left: 50px;
+}
+.bigHeader {
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 77px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-left: 30px;
+}
+.nameInput {
+  background: #f4f4f4;
+  border-bottom: 2px solid #5fc3ca;
+  border-radius: 5px 5px 0px 0px;
+  padding-left: 10px;
+}
+.emailInput {
+  background: #f4f4f4;
+  border-bottom: 2px solid #c0c0c0;
+  border-radius: 5px 5px 0px 0px;
+  padding-left: 10px;
+}
+.input {
+  gap: 10px;
+  padding: 10px 30px;
+}
+.feedbackMessage {
+  box-sizing: border-box;
+  background: #f4f4f4;
+  border-bottom: 2px solid #c0c0c0;
+  border-radius: 5px 5px 0px 0px;
+  padding-left: 10px;
+}
+
+.imageHolder {
+  background: #5fc3ca;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 640px) {
+  .imageHolder {
+    display: none;
+  }
+  .bigHeader {
+    height: 70px;
+    width: 354px;
+    font-size: 64px;
+    font-weight: 400;
+    line-height: 77px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  .nameInput {
+    background: #f4f4f4;
+    border-bottom: 2px solid #5fc3ca;
+    border-radius: 5px 5px 0px 0px;
+    width: 80vw;
+  }
+  .feedback {
+    padding: 0px 20px;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 641px) and (max-width: 767px) {
+  .bigHeader {
+    height: 77px;
+    width: 354px;
+    font-size: 64px;
+    font-weight: 400;
+  }
+  .help {
+    padding: 0 10px;
+  }
+  .nameInput {
+    width: 60vw;
+  }
+  .emailInput {
+    width: 60vw;
+  }
+  .feedbackMessage {
+    width: 60vw;
+  }
+  .serviceImage {
+    display: none;
+  }
+  .imageHolder {
+    display: none;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .contactingPart {
+    width: 60%;
+  }
+  .imageHolder {
+    width: 40%;
+    height: 100vh;
+  }
+  .main {
+    display: flex;
+    height: 100%;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 1024px) and (max-width: 1280px) {
+  .contactingPart {
+    width: 60%;
+  }
+  .imageHolder {
+    width: 40%;
+    height: 100vh;
+  }
+  .main {
+    display: flex;
+    height: 100%;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1280px) {
+  .contactingPart {
+    width: 60%;
+  }
+  .main {
+    display: flex;
+    height: 100%;
+  }
+}
