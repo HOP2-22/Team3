@@ -17,6 +17,7 @@
 }
 @media only screen and (max-width: 980px) {
   .All {
+    background-color: aqua ;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
@@ -31,7 +32,6 @@
   }
 }
 
-
 .All {
   display: flex;
   flex-direction: column;
@@ -39,11 +39,6 @@
   margin-bottom: 20px;
 }
 
-.Container {
-  display: flex;
-  justify-content: space-around;
-  gap: 50px;
-}
 
 .HowItWorks {
   display: flex;
@@ -63,11 +58,10 @@
   font-size: xx-large;
 }
 
-.ExampleCard {
+.ExampleCard { display: flex;
   width: 314px;
   border: 1px black solid;
   background-color: white;
-  font-size: xx-large;
   border-radius: 5px;
 }
 

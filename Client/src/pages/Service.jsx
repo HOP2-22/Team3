@@ -1,8 +1,8 @@
 import React from "react";
-import HowItWorks from "../components/services/services";
+import RowAndColumnSpacing from "../components/services/try";
 const Service = () => {
-  return <div className="">
-    <HowItWorks />
+  return <div style={{marginTop:"69px"}}>
+    <RowAndColumnSpacing />
   </div>
 };
 
