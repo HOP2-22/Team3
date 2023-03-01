@@ -9,6 +9,6 @@ const {
 const router = express.Router();
 
 router.route("/").get(getContacts).post(createContact);
-router.route("/:id/contact").delete(deleteContact);
+router.route("/:id").delete(deleteContact);
 
 module.exports = router;
