@@ -1,61 +1,42 @@
-//Хуудаслалт
-const paginate = require("../utils/paginate");
-
+const asyncHandler = require("../middleWare/asyncHandler");
 const Contact = require("../models/contact");
 
-exports.ExampleCode = async (req, res, next) => {
-  const Example = {};
-  try {
-    const example = await Example.find({});
+exports.getContacts = asyncHandler(async (req, res, next) => {
+  const contacts = await Contact.find({});
 
-    res.status(200).json({
-      success: true,
-      data: example,
-      message: "жишээ api function иймэрхүү маягаар code oo бичнэ",
-    });
-  } catch (error) {
-    //Хэрэв алдаа гарвал error middle ware ажилна
-    //Хаана байгаа ../middleware/error.js
-    next(error);
+  res.status(200).json({
+    success: true,
+    data: contacts,
+    message: "Get all contacts",
+  });
+});
+
+exports.createContact = asyncHandler(async (req, res, next) => {
+  const user = await Contact.findOne({ email: req.body.email });
+
+  if (user) {
+    user.text.push(req.body.text);
+    user.name = req.body.name;
+    user.save();
+  } else {
+    await Contact.create(req.body);
   }
-};
 
-exports.getContacts = async (req, res, next) => {
-  try {
-    const contacts = await Contact.find({});
+  res.status(200).json({
+    success: true,
+    data: user,
+    message: "Send your contact",
+  });
+});
 
-    res.status(200).json({
-      success: true,
-      data: contacts,
-      message: "амжилттай холбогдох хаягуудийн мэдээлэлийг авлаа",
-    });
-  } catch (error) {
-    next(error);
-  }
-};
+exports.deleteContact = asyncHandler(async (req, res, next) => {
+  const { id } = req.body;
 
-exports.createContact = async (req, res, next) => {
-  try {
-    const createContact = await Contact.create(req.body);
-    res.status(200).json({
-      success: true,
-      data: createContact,
-      message: "ta amjilttai holbogdlo",
-    });
-  } catch (error) {
-    next(error);
-  }
-};
+  const contact = await Contact.findByIdAndDelete(id);
 
-exports.deleteContact = async (req, res, next) => {
-  try {
-    const _id = req.params.id
-    await Contact.deleteOne({_id})
-    res.status(200).json({
-      success : true,
-      message : "contact ustla"
-    })
-  } catch (error) {
-    next(error);
-  }
-};
+  res.status(200).json({
+    success: true,
+    data: contact,
+    message: "Contact deleted",
+  });
+});

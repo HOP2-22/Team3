@@ -1,12 +1,9 @@
 const express = require("express");
 
 const {
-  //admin bvh subscribe iin medeelig avna bas ustgana
   getSubscribes,
-  deleteSubscribe,
-
-  // hereglegch ooroo subscribe vvsgene 1 hayagaas 1 l udaaa
   createSubscribe,
+  deleteSubscribe,
 } = require("../controller/subscribe");
 
 const router = express.Router();

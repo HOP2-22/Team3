@@ -1,169 +1,146 @@
 const paginate = require("../utils/paginate");
-const bcrypt = require("bcrypt");
-const User = require("../models/User");
+const asyncHandler = require("../middleWare/asyncHandler");
+const MyError = require("../utils/myError");
+const User = require("../models/user");
 const jwt = require("jsonwebtoken");
-const { param } = require("../routes/user");
 
-exports.ExampleCode = async (req, res, next) => {
-  const Example = {};
-  try {
-    const example = await Example.find({});
+exports.checkUser = asyncHandler(async (req, res, next) => {
+  const token = req?.headers?.token;
 
-    res.status(200).json({
-      success: true,
-      data: example,
-      message: "жишээ api function иймэрхүү маягаар code oo бичнэ",
+  if (!token) {
+    res.status(404).json({
+      success: false,
+      message: "Invalid token",
     });
-  } catch (error) {
-    //Хэрэв алдаа гарвал error middle ware ажилна
-    //Хаана байгаа ../middleware/error.js
-    next(error);
   }
-};
+  const data = await jwt.decode(token, process.env.ACCESS_TOKEN_SECRET);
 
-//Admin
+  const user = await User.findById(data.id);
 
-exports.getUsers = async (req, res, next) => {
-  try {
-    const users = await User.find({});
+  res.status(200).json({
+    success: true,
+    data: { user, data },
+    message: "successfully check token",
+  });
+});
 
-    res.status(200).json({
-      success: true,
-      data: users,
-      message: "амжилттай хэрэглэгчдийн мэдээлэлийг авлаа",
-    });
-  } catch (error) {
-    next(error);
-  }
-};
+exports.getUsers = asyncHandler(async (req, res, next) => {
+  const { limit, sort } = req.query;
+  delete req.query.limit;
 
-exports.deleteUser = async (req, res, next) => {
-  try {
-    const _id = req.params.id
-    await User.findByIdAndDelete({_id})
-    res.status(200).json({
-      success : true,
-      message : "hereglegc ustla"
-    })
-  } catch (error) {
-    next(error);
-  }
-};
+  const users = await User.find({})
+    .populate("userPost")
+    .limit(limit)
+    .sort(sort);
 
-//User
+  res.status(200).json({
+    success: true,
+    data: users,
+    message: "Get all users information",
+  });
+});
 
-exports.getUser = async (req, res, next) => {
-  try {
-    const _id = req.params.id
-    const user = await User.findById({_id})
-    res.status(200).json({
-      success : true,
-      data : user
-    })
-  } catch (error) {
-    next(error);
-  }
-};
+exports.deleteUser = asyncHandler(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
 
-exports.updateUser = async (req, res, next) => {
-  try {
-    const _id = req.params.id 
-    const userName = req.body
-    await User.findByIdAndUpdate({_id} , userName)
-    const user = await User.findById({_id})
-    res.status(200).json({
-      success : true,
-      data : user
-    })
-  } catch (error) {
-    next(error);
-  }
-};
+  user.remove();
 
-//Auth
+  res.status(200).json({
+    success: true,
+    data: user,
+    message: "User deleted",
+  });
+});
 
-exports.register = async (req, res, next) => {
-  const { password, firstName, lastName, email } = req.body;
+exports.getUser = asyncHandler(async (req, res, next) => {
+  const { select } = req.query;
+  ["select"].map((el) => delete req.query[el]);
 
-  const mail = await User.findOne({ email });
+  const user = await User.findById(req.params.id, select).populate("userPost");
 
-  if (mail) { 
-    return res
-      .status(400)
-      .json({ message: "hereglegchiin email burtgeltei bn" });
+  res.status(200).json({
+    success: true,
+    data: user,
+    message: "user data",
+  });
+});
+
+exports.updateUser = asyncHandler(async (req, res, next) => {
+  const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  if (!user) {
+    throw new MyError(`wrong ID`, 404);
   }
 
-  try {
-    const salt = await bcrypt.genSalt(10);
-    const hashPassword = await bcrypt.hash(password, salt);
-    const user = await User.create({
-      email,
-      password: hashPassword,
-      firstName,
-      lastName,
-    });
-    res.status(200).json({
-      success: true,
-      data: user,
-      message: "hereglegc amjilttai uuslee",
-    });
-  } catch (error) {
-    next(error);
+  res.status(200).json({
+    isDone: true,
+    data: user,
+    message: "user updated",
+  });
+});
+
+exports.register = asyncHandler(async (req, res, next) => {
+  const user = await User.create(req.body);
+
+  const token = user.getJWT();
+  user.profileImageGenerator(req.body.gender);
+
+  await user.save();
+
+  res.status(200).json({
+    success: true,
+    data: { token, user },
+    message: "registered successfully",
+  });
+});
+
+exports.login = asyncHandler(async (req, res, next) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    throw new MyError("write your email or password", 400);
   }
-};
 
-const ACCESS_TOKEN = "8000";
+  const user = await User.findOne({ email: email }).select("+password");
 
-exports.login = async (req, res, next) => {
-  try {
-    const { email, password } = req.body;
-
-    const user = await User.findOne({ email });
-  
-    if (!user) {
-      return res.status(400).json({ message: "invalid credentials" });
-    }
-  
-    const match = await bcrypt.compare(password, user?.password);
-  
-    if (match) {
-      const token = jwt.sign(
-        {
-          user: user.email,
-        },
-        ACCESS_TOKEN
-      );
-      res.status(200).json({
-        message: "Амжилттай нэвтэрлээ",
-        token: token,
-        success : true
-      });
-    } 
-  } catch (error) {
-    next(error);
+  if (!user) {
+    throw new MyError("wrong your email or password", 400);
   }
-};
 
-exports.updatePass = async (req, res, next) => {
-  try {
-    const {email} = req.body
-    const user = await User.find({email})
-    if(!user){
-      res.status(400).send(error)
-    } else {
-      return res.status(200).json({
-        success : true,
-        message : 'newterle odo passa solij bolno', 
-      })
-    }
-  } catch (error) {
-    next(error);
-  }
-};
+  const isOkey = await user.checkPassword(password);
 
-exports.verifyUser = (req, res, next) => {
-  try {
-  } catch (error) {
-    next(error);
+  if (!isOkey) {
+    throw new MyError("wrong your email or password", 400);
   }
-};
+
+  const token = user.getJWT();
+
+  user.password = "";
+
+  res.status(200).json({
+    success: true,
+    data: { token, user },
+    message: "user loged",
+  });
+});
+
+exports.updatePass = asyncHandler(async (req, res, next) => {
+  const user = await User.findOne();
+
+  if (!user) {
+    throw new MyError(`user not found`, 404);
+  }
+
+  user.password = req.body.password;
+
+  await user.save();
+
+  res.status(200).json({
+    isDone: true,
+    user: user,
+    message: "Password changed successfully",
+  });
+});

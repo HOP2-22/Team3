@@ -1,63 +1,67 @@
-//Хуудаслалт
 const paginate = require("../utils/paginate");
-
+const asyncHandler = require("../middleWare/asyncHandler");
+const MyError = require("../utils/myError");
 const Comment = require("../models/comment");
 
-exports.ExampleCode = async (req, res, next) => {
-  const Example = {};
-  try {
-    const example = await Example.find({});
+exports.getComments = asyncHandler(async (req, res, next) => {
+  const comments = await Comment.find({});
 
-    res.status(200).json({
-      success: true,
-      data: example,
-      message: "жишээ api function иймэрхүү маягаар code oo бичнэ",
-    });
-  } catch (error) {
-    //Хэрэв алдаа гарвал error middle ware ажилна
-    //Хаана байгаа ../middleware/error.js
-    next(error);
+  res.status(200).json({
+    success: true,
+    data: comments,
+    message: "Get all comments",
+  });
+});
+
+exports.getCommentsByPost = asyncHandler(async (req, res, next) => {
+  const comments = await Comment.find({ post: req.params.id }).populate(
+    "writer"
+  );
+
+  res.status(200).json({
+    success: true,
+    data: comments,
+    message: "Get post comments",
+  });
+});
+
+exports.createComment = asyncHandler(async (req, res, next) => {
+  const comment = await Comment.create(req.body);
+
+  res.status(200).json({
+    success: true,
+    data: comment,
+    message: "comment created",
+  });
+});
+
+exports.updateComment = asyncHandler(async (req, res, next) => {
+  const comment = await Comment.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  if (!comment) {
+    throw new MyError("No Comment found");
   }
-};
 
-exports.getComments = async (req, res, next) => {
-  try {
-    const comments = await Comment.find({});
+  res.status(200).json({
+    success: true,
+    data: comment,
+    message: "comment updated successfully",
+  });
+});
 
-    res.status(200).json({
-      success: true,
-      data: comments,
-      message: "амжилттай комэнтүүдийн мэдээлэлийг авлаа",
-    });
-  } catch (error) {
-    next(error);
+exports.deleteComment = asyncHandler(async (req, res, next) => {
+  const comment = await Comment.findByIdAndDelete(req.params.id);
+
+  if (!comment) {
+    throw new MyError("No Comment found");
   }
-};
 
-exports.getCommentsByPost = async (req, res, next) => {
-  try {
-  } catch (error) {
-    next(error);
-  }
-};
-
-exports.createComment = async (req, res, next) => {
-  try {
-  } catch (error) {
-    next(error);
-  }
-};
-
-exports.updateComment = async (req, res, next) => {
-  try {
-  } catch (error) {
-    next(error);
-  }
-};
-
-exports.deleteComment = async (req, res, next) => {
-  try {
-  } catch (error) {
-    next(error);
-  }
-};
+  res.status(200).json({
+    success: true,
+    data: comment,
+    message: "comment deleted successfully",
+  });
+});
