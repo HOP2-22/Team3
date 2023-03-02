@@ -22,7 +22,7 @@ exports.createSubscribe = asyncHandler(async (req, res, next) => {
 });
 
 exports.deleteSubscribe = asyncHandler(async (req, res, next) => {
-  const { id } = req.body;
+  const { id } = req.params;
 
   const subscribe = await Subscribe.findByIdAndDelete(id);
 

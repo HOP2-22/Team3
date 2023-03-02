@@ -80,14 +80,14 @@ exports.createPost = asyncHandler(async (req, res, next) => {
   });
 });
 
-exports.addIntrested = asyncHandler(async (req, res, next) => {
+exports.addLike = asyncHandler(async (req, res, next) => {
   const post = await Post.findById(req.body.id);
 
   if (!post) {
     throw new MyError("No post found");
   }
 
-  post.intrested++;
+  post.likes++;
   post.save();
 
   res.status(200).json({
