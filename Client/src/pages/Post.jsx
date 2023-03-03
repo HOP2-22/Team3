@@ -1,7 +1,11 @@
 import React from "react";
-
-const Post = () => {
-  return <div>Post</div>;
-};
+import PostDetails from "../components/Products/PostDetails";
+function Post() {
+  return (
+    <div>
+      <PostDetails />
+    </div>
+  );
+}
 
 export default Post;
