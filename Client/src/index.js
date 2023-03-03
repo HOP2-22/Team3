@@ -35,8 +35,8 @@ root.render(
             </Route>
             <Route path="products">
               <Route path="" element={<Products />} />
-              <Route path=":id" element={<UserPosts />} />
-              <Route path="post" element={<Post />} />
+              <Route path="user/:id" element={<UserPosts />} />
+              <Route path=":id" element={<Post />} />
             </Route>
             <Route path="admin">
               <Route path="" element={<AdminHome />} />
