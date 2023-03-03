@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 
 import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
 
 import FooterLine1 from "./FooterLine1";
 import FooterLine2 from "./FooterLine2";
+import { Context } from "../../../provider/Context";
 
 const Footer = () => {
+  const { path } = useContext(Context);
+
   const [subscribedEmailValue, setSubscribedEmailValue] = useState("");
 
   const handleEmail = (event) => {
@@ -44,7 +47,11 @@ const Footer = () => {
   };
 
   return (
-    <div className="bg-[#252B3B] pt-[37px] pb-[55px] px-5 md:px-8 lg:px-20 xl:px-32 4xl:px-48 5xl:px-72 7xl:px-88 grid sm:grid-cols-2 lg:grid-cols-3 gap-[40px] sm:gap-[70px]">
+    <div
+      className={`${
+        path.includes("auth") && "hidden"
+      } bg-[#252B3B] pt-[37px] pb-[55px] px-5 md:px-8 lg:px-20 xl:px-32 4xl:px-48 5xl:px-72 7xl:px-88 grid sm:grid-cols-2 lg:grid-cols-3 gap-[40px] sm:gap-[70px]`}
+    >
       <FooterLine1 />
       <FooterLine2 />
       <div className="w-full sm:col-span-2 lg:col-span-1 flex flex-col gap-4 sm:flex-row sm:items-center lg:flex-col sm:gap-10 lg:gap-4">

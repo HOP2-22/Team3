@@ -27,6 +27,7 @@ const NavBar = () => {
   }, []);
 
   const [width, setWidth] = useState(window.innerWidth);
+
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
@@ -39,7 +40,11 @@ const NavBar = () => {
   }, [window.innerWidth]);
 
   return (
-    <div className="w-full fixed z-20 flex flex-col">
+    <div
+      className={`${
+        path.includes("auth") && "hidden"
+      } w-full fixed z-20 flex flex-col`}
+    >
       <DesktopNavbar
         path={path}
         offset={offset}

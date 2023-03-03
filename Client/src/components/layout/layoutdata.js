@@ -118,6 +118,6 @@ export const HeaderTitles = [
   },
   {
     name: "Log in",
-    link: "/register/login",
+    link: "/auth/login",
   },
 ];
