@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import "../../css/ContactPage.css";
 import axios from "axios";
 
 function ContactComponent() {
