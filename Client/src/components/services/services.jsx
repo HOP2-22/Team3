@@ -1,4 +1,4 @@
-import "../../css/services.css";
+import "../../css/Services.css";
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Unstable_Grid2";
@@ -18,8 +18,8 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function RowAndColumnSpacing() {
   return (
     <Box className="con" sx={{ width: "100%" }}>
-      <Grid className="con2" container  columns={{ xs: 4, sm: 8, md: 12 }}>
-        <Grid className= "idk" xs={4}>
+      <Grid className="con2" container columns={{ xs: 4, sm: 8, md: 12 }}>
+        <Grid className="idk" xs={4}>
           <Item className="HowItWorks">
             <Typography className="How">How It Works</Typography>
             <hr></hr>
@@ -33,7 +33,7 @@ export default function RowAndColumnSpacing() {
             </Typography>
           </Item>
         </Grid>
-        <Grid className= "idk" xs={4}>
+        <Grid className="idk" xs={4}>
           <Item className="ExampleCard">
             <Typography className="Post">
               This is an example post in our site
@@ -41,7 +41,7 @@ export default function RowAndColumnSpacing() {
             <MediaCard />
           </Item>
         </Grid>
-        <Grid className= "idk" xs={4}>
+        <Grid className="idk" xs={4}>
           <Item className="Schedule">
             <Typography className="ScheduleText">
               Scheduling that actually works
@@ -55,7 +55,7 @@ export default function RowAndColumnSpacing() {
             </Typography>
           </Item>
         </Grid>
-        <Grid className= "idk" xs={4}>
+        <Grid className="idk" xs={4}>
           <Item className="SimpleTask">
             <Typography className="SimpleTaskText">
               Simple task management
@@ -69,7 +69,7 @@ export default function RowAndColumnSpacing() {
             </Typography>
           </Item>
         </Grid>
-        <Grid className= "idk" xs={4}>
+        <Grid className="idk" xs={4}>
           <Item className="TeamWork">
             <Typography className="TeamWorkText">
               Your Hub for teamwork
@@ -83,7 +83,7 @@ export default function RowAndColumnSpacing() {
             </Typography>
           </Item>
         </Grid>
-        <Grid className= "idk" xs={4} >
+        <Grid className="idk" xs={4}>
           <Item className="YtVideo">
             <Typography className="YtVideoText">
               Youtube video for instructions
