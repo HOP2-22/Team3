@@ -8,10 +8,11 @@ function ContactComponent() {
   const createContact = async () => {
     try {
       await axios.post("http://localhost:8000/contact", {
-        name: { nameValue },
-        email: { emailValue },
-        text: { feedValue },
+        name: nameValue,
+        email: emailValue,
+        text: feedValue,
       });
+      console.log("1");
     } catch (error) {
       console.log(error);
     }
