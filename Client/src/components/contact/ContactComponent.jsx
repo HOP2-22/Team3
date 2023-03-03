@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import "../../css/ContactPage.css";
 import axios from "axios";
 
 function ContactComponent() {
@@ -14,13 +15,33 @@ function ContactComponent() {
       });
       console.log("1");
     } catch (error) {
-      console.log(error);
+      alert(error.response.data.error.message);
     }
+  };
+
+  const nameRef = useRef();
+  const emailRef = useRef();
+  const textRef = useRef();
+
+  const handleOnKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleRegister();
+    }
+  };
+
+  const handleRegister = () => {
+    nameValue.length === 0
+      ? nameRef.current.focus()
+      : emailValue.length === 0
+      ? emailRef.current.focus()
+      : feedValue.length === 0
+      ? textRef.current.focus()
+      : createContact();
   };
 
   return (
     <div className="main">
-      <div className="contactingPart">
+      <div className="contactingPart py-20">
         <div className="bigHeader">Contact Us</div>
         <div>
           <div className="help">
@@ -30,28 +51,34 @@ function ContactComponent() {
           </div>
           <div className="input">
             <input
-              className="nameInput"
+              ref={nameRef}
+              className="nameInput py-2"
               placeholder="Write your Name"
               value={nameValue}
               onChange={(event) => {
                 setNameValue(event.target.value);
               }}
+              onKeyDown={handleOnKeyDown}
             />
             <input
-              className="emailInput"
+              ref={emailRef}
+              className="emailInput py-2"
               placeholder="Email Address"
               value={emailValue}
               onChange={(event) => {
                 setEmailValue(event.target.value);
               }}
+              onKeyDown={handleOnKeyDown}
             />
             <textarea
-              className="feedbackMessage"
+              ref={textRef}
+              className="feedbackMessage py-2"
               placeholder="Type your message here"
               value={feedValue}
               onChange={(event) => {
                 setFeedValue(event.target.value);
               }}
+              onKeyDown={handleOnKeyDown}
             />
           </div>
         </div>
@@ -59,7 +86,7 @@ function ContactComponent() {
           <button
             className="submitButton"
             onClick={() => {
-              createContact();
+              handleRegister();
             }}
           >
             Submit

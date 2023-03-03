@@ -17,9 +17,9 @@ exports.createContact = asyncHandler(async (req, res, next) => {
   let contact1;
 
   if (contact) {
-    user.text.push(req.body.text);
-    user.name = req.body.name;
-    user.save();
+    contact.text.push(req.body.text);
+    contact.name = req.body.name;
+    contact.save();
   } else {
     contact1 = await Contact.create(req.body);
   }
