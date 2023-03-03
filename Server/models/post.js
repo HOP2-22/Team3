@@ -17,10 +17,6 @@ const postSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    intrested: {
-      type: Number,
-      default: 0,
-    },
     publishDate: { type: Date, default: Date.now },
     owner: {
       type: mongoose.Schema.ObjectId,

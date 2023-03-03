@@ -8,10 +8,8 @@ const {
 
 const router = express.Router();
 
-router
-  .route("/")
-  .get(getSubscribes)
-  .post(createSubscribe)
-  .delete(deleteSubscribe);
+router.route("/").get(getSubscribes).post(createSubscribe);
+
+router.delete("/:id", deleteSubscribe);
 
 module.exports = router;
