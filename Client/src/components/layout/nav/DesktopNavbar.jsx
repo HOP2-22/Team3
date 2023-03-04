@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { HeaderTitles } from "../layoutdata";
 import Hamburger from "./Hamburger";
 import DesktopNavbarItem from "./DesktopNavbarItem";
+import { Context } from "../../../provider/Context";
 
 const DesktopNavbar = ({ path, offset, hamburger, setHamburger }) => {
+  const { user } = useContext(Context);
+
   return (
     <div
       className={`z-20 w-full h-[60px] flex items-center drop-shadow-lg ${
@@ -32,9 +35,21 @@ const DesktopNavbar = ({ path, offset, hamburger, setHamburger }) => {
         </Link>
         <div className="hidden items-center gap-[30px] md:flex">
           {HeaderTitles.map((item, index) => {
+            if (index === 3 && user !== null) {
+              return (
+                <DesktopNavbarItem
+                  key={index}
+                  index={index}
+                  title={"Logout"}
+                  link={"/"}
+                  offset={offset}
+                />
+              );
+            }
             return (
               <DesktopNavbarItem
                 key={index}
+                index={index}
                 title={item.name}
                 link={item.link}
                 offset={offset}
