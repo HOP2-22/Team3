@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { HeaderTitles } from "../layoutdata";
 import MobileNavbarItem from "./MobileNavbarItem";
+import { Context } from "../../../provider/Context";
 
 const MobileNavbar = ({ hamburger, setHamburger }) => {
+  const { user } = useContext(Context);
+
   return (
     <div
       className={`absolute ${
@@ -12,10 +15,22 @@ const MobileNavbar = ({ hamburger, setHamburger }) => {
       } z-10 transition md:hidden divide-y w-full bg-white shadow-xl`}
     >
       {HeaderTitles.map((item, index) => {
+        if (index === 3 && user !== null) {
+          return (
+            <MobileNavbarItem
+              title={"Logout"}
+              key={index}
+              index={index}
+              link={"/"}
+              setHamburger={setHamburger}
+            />
+          );
+        }
         return (
           <MobileNavbarItem
             title={item.name}
             key={index}
+            index={index}
             link={item.link}
             setHamburger={setHamburger}
           />

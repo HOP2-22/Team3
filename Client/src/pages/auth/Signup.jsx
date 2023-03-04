@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -12,6 +12,29 @@ const Signup = () => {
     password: "",
   });
 
+  const firstnameRef = useRef();
+  const lastnameRef = useRef();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
+  const handleOnKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleRegister();
+    }
+  };
+
+  const handleRegister = () => {
+    info.firstname.length === 0
+      ? firstnameRef.current.focus()
+      : info.lastname.length === 0
+      ? lastnameRef.current.focus()
+      : info.email.length === 0
+      ? emailRef.current.focus()
+      : info.password.length === 0
+      ? passwordRef.current.focus()
+      : signup();
+  };
+
   const signup = async () => {
     try {
       await axios.post("http://localhost:8000/user/auth/signup", {
@@ -23,7 +46,7 @@ const Signup = () => {
 
       navigate("/auth/login");
     } catch (error) {
-      console.log(error);
+      alert(error.response.data.error.message);
     }
   };
 
@@ -33,8 +56,10 @@ const Signup = () => {
         <p>firstname:</p>
         <input
           type="text"
+          ref={firstnameRef}
+          onKeyDown={handleOnKeyDown}
           value={info.firstname}
-          className="bg-gray-100 w-[200px] pl-5 py-3 mt-2"
+          className="bg-gray-100 w-[280px] rounded-[10px] pl-5 py-3 mt-2"
           onChange={(event) => {
             setInfo({ ...info, firstname: event.target.value });
           }}
@@ -44,8 +69,10 @@ const Signup = () => {
         <p>lastname:</p>
         <input
           type="text"
+          ref={lastnameRef}
+          onKeyDown={handleOnKeyDown}
           value={info.lastname}
-          className="bg-gray-100 w-[200px] pl-5 py-3 mt-2"
+          className="bg-gray-100 w-[280px] rounded-[10px] pl-5 py-3 mt-2"
           onChange={(event) => {
             setInfo({ ...info, lastname: event.target.value });
           }}
@@ -55,8 +82,10 @@ const Signup = () => {
         <p>Email:</p>
         <input
           type="text"
+          ref={emailRef}
+          onKeyDown={handleOnKeyDown}
           value={info.email}
-          className="bg-gray-100 w-[200px] pl-5 py-3 mt-2"
+          className="bg-gray-100 w-[280px] rounded-[10px] pl-5 py-3 mt-2"
           onChange={(event) => {
             setInfo({ ...info, email: event.target.value });
           }}
@@ -66,8 +95,10 @@ const Signup = () => {
         <p>password:</p>
         <input
           type="password"
+          ref={passwordRef}
+          onKeyDown={handleOnKeyDown}
           value={info.password}
-          className="bg-gray-100 w-[200px] pl-5 py-3 mt-2"
+          className="bg-gray-100 w-[280px] rounded-[10px] pl-5 py-3 mt-2"
           onChange={(event) => {
             setInfo({ ...info, password: event.target.value });
           }}

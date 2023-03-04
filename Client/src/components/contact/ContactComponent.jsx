@@ -13,7 +13,6 @@ function ContactComponent() {
         email: emailValue,
         text: feedValue,
       });
-      console.log("1");
     } catch (error) {
       alert(error.response.data.error.message);
     }
@@ -46,8 +45,7 @@ function ContactComponent() {
         <div>
           <div className="help">
             Send us your query via the form below or send us
-            <br /> an email at jawkhlan626@gmail.com for any issue your're
-            facing!
+            <br /> an email at blogteam3@gmail.com for any issue your're facing!
           </div>
           <div className="input">
             <input

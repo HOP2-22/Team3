@@ -18,7 +18,6 @@ const Footer = () => {
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
-      console.log("La");
       handleSubmit();
     }
   };

@@ -1,12 +1,32 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Cookie from "js-cookie";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [info, setInfo] = useState({
     email: "",
     password: "",
   });
+
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
+  const handleOnKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleRegister();
+    }
+  };
+
+  const handleRegister = () => {
+    info.email.length === 0
+      ? emailRef.current.focus()
+      : info.password.length === 0
+      ? passwordRef.current.focus()
+      : login();
+  };
 
   const login = async () => {
     try {
@@ -17,9 +37,11 @@ const Login = () => {
           password: info.password,
         }
       );
-      console.log(response);
+
+      Cookie.set("token", response.data.data.token);
+      navigate("/");
     } catch (error) {
-      console.log(error);
+      alert(error.response.data.error.message);
     }
   };
 
@@ -29,8 +51,10 @@ const Login = () => {
         <p>Email:</p>
         <input
           type="text"
+          ref={emailRef}
+          onKeyDown={handleOnKeyDown}
           value={info.email}
-          className="bg-gray-100 w-[200px] pl-5 py-3 mt-2"
+          className="bg-gray-100 w-[280px] rounded-[10px] pl-5 py-3 mt-2"
           onChange={(event) => {
             setInfo({ ...info, email: event.target.value });
           }}
@@ -40,8 +64,10 @@ const Login = () => {
         <p>password:</p>
         <input
           type="password"
+          ref={passwordRef}
+          onKeyDown={handleOnKeyDown}
           value={info.password}
-          className="bg-gray-100 w-[200px] pl-5 py-3 mt-2"
+          className="bg-gray-100 w-[280px] rounded-[10px] pl-5 py-3 mt-2"
           onChange={(event) => {
             setInfo({ ...info, password: event.target.value });
           }}
