@@ -22,11 +22,6 @@ const userSchema = new mongoose.Schema(
         "your email is not email address",
       ],
     },
-    role: {
-      type: String,
-      enum: ["user", "admin"],
-      default: "user",
-    },
     password: {
       type: String,
       min: [8, "minimum 8 letter"],

@@ -128,7 +128,7 @@ exports.login = asyncHandler(async (req, res, next) => {
 });
 
 exports.updatePass = asyncHandler(async (req, res, next) => {
-  const user = await User.findOne();
+  const user = await User.findOne({ email: req.body.email });
 
   if (!user) {
     throw new MyError(`user not found`, 404);

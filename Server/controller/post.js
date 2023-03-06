@@ -32,7 +32,7 @@ exports.getPosts = asyncHandler(async (req, res, next) => {
 exports.getPost = asyncHandler(async (req, res, next) => {
   const post = await Post.findById(req.params.id)
     .populate("user")
-    .populate("comments");
+    .populate({ path: "comments", populate: "writerId" });
 
   if (!post) {
     throw new MyError("No post found");
@@ -88,6 +88,23 @@ exports.addLike = asyncHandler(async (req, res, next) => {
   }
 
   post.likes++;
+  post.save();
+
+  res.status(200).json({
+    success: true,
+    data: post,
+    message: "post updated successfully",
+  });
+});
+
+exports.minusLike = asyncHandler(async (req, res, next) => {
+  const post = await Post.findById(req.body.id);
+
+  if (!post) {
+    throw new MyError("No post found");
+  }
+
+  post.likes--;
   post.save();
 
   res.status(200).json({
