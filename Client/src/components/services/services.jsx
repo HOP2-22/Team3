@@ -1,4 +1,4 @@
-import "../../css/services.css";
+import "../../css/Services.css";
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Unstable_Grid2";
