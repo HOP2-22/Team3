@@ -1,2 +1,119 @@
-.main {
+@media only screen and (min-width: 0px) {
+  .title {
+    width: 100%;
+    text-align: start;
+    font-weight: 800;
+    font-size: 48px;
+    color: #25313c;
+  }
+  .profilePictureStyle {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 9999px;
+  }
+  .nameDate {
+    font-weight: 600;
+    font-size: 14px;
+    color: #6d7d8b;
+  }
+  .userDetails {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 50px;
+  }
+  .postView {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .line {
+    width: 100%;
+    height: 1px;
+    background: #6d7d8b38;
+  }
+  .loggedUserPP {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 9999px;
+  }
+  .commentSection {
+    display: flex;
+    gap: 30px;
+    padding-bottom: 10px;
+  }
+  .commentingArea {
+    flex-grow: 1;
+    padding-left: 10px;
+    border: 2px solid #bbc8d4;
+    border-radius: 4px;
+  }
+  .postImage {
+    width: 100%;
+    padding-bottom: 40px;
+  }
+  .postText {
+    padding-bottom: 40px;
+  }
+  .joinDaConv {
+    font-weight: 400;
+    font-size: 24px;
+    color: #6d7d8b;
+  }
+  .commentContainer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .comments {
+    width: 100%;
+  }
+  .userForward {
+    width: 100%;
+    justify-content: start;
+  }
+  .commentLoad {
+    width: 100%;
+    padding-left: 40px;
+    display: flex;
+    gap: 25px;
+    padding-bottom: 10px;
+  }
+  .fatherDiv {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .widthContainer {
+    padding: 0px 20px;
+    max-width: 100%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .widthContainer {
+    padding: 0px 0px;
+    max-width: 600px;
+  }
+  .contactingPart {
+    width: 60%;
+  }
+  .imageHolder {
+    width: 40%;
+    height: 100vh;
+  }
+  .main {
+    display: flex;
+    height: 100%;
+  }
+  .commentLoad {
+    width: 100%;
+    padding-left: 90px;
+    display: flex;
+    gap: 25px;
+    padding-bottom: 10px;
+  }
 }
