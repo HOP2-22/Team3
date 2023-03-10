@@ -16,9 +16,7 @@ function PostDetails({ id }) {
     try {
       const post = await axios.get(`http://localhost:8000/post/${id}`);
       setData(post.data.data);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -32,6 +30,7 @@ function PostDetails({ id }) {
         post: id,
         writerId: user._id,
       });
+      setCommentValue("");
       post();
     } catch (error) {}
   };
@@ -40,13 +39,19 @@ function PostDetails({ id }) {
     try {
       await axios.delete(`http://localhost:8000/comment/${commentId}`);
       post();
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
   return (
     <div className="fatherDiv">
       <div className="widthContainer">
+        <div className="w-full h-14">
+          <div
+            className="w-10 h-10 bg-green-400 flex items-center justify-center rounded-full text-[24px] text-black"
+            onClick={() => window.history.back()}
+          >
+            {"<"}
+          </div>
+        </div>
         <div className="postView">
           <div className="title">{data?.title}</div>
           <div className="userForward">

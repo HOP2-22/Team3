@@ -40,6 +40,8 @@ const Login = () => {
 
       Cookie.set("token", response.data.data.token);
       navigate("/");
+
+      window.location.reload();
     } catch (error) {
       alert(error.response.data.error.message);
     }

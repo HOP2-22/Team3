@@ -51,7 +51,6 @@ const Provider = ({ children }) => {
         setUser(response.data.data.user);
         setLoading(false);
       } catch (error) {
-        console.log(error.response.data.message);
         setLoading(false);
       }
     };

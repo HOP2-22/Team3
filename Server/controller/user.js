@@ -8,7 +8,7 @@ exports.checkUser = asyncHandler(async (req, res, next) => {
   const token = req?.headers?.token;
 
   if (!token) {
-    res.status(404).json({
+    return res.status(404).json({
       success: false,
       message: "Invalid token",
     });

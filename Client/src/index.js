@@ -13,6 +13,7 @@ import Signup from "./pages/auth/Signup";
 import ForgetPassword from "./pages/auth/ForgetPassword";
 import Products from "./pages/Products";
 import Post from "./pages/Post";
+import Guard from "./components/Guard";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -30,8 +31,22 @@ root.render(
               <Route path="forgetpassword" element={<ForgetPassword />} />
             </Route>
             <Route path="products">
-              <Route path="" element={<Products />} />
-              <Route path=":id" element={<Post />} />
+              <Route
+                path=""
+                element={
+                  <Guard>
+                    <Products />
+                  </Guard>
+                }
+              />
+              <Route
+                path=":id"
+                element={
+                  <Guard>
+                    <Post />
+                  </Guard>
+                }
+              />
             </Route>
           </Routes>
         </Layout>
