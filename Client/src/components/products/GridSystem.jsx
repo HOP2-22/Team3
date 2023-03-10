@@ -23,10 +23,7 @@ export default function ResponsiveGrid() {
     try {
       const res = await axios.get("http://localhost:8000/post");
       setData(res.data.data);
-      console.log(res.data.data[0]);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
