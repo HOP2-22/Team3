@@ -19,7 +19,9 @@ export default function ResponsiveGrid() {
   const [data, setData] = useState([]);
   const posts = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/post");
+      const res = await axios.get(
+        "https://blog-website-team3.onrender.com/post"
+      );
       setData(res.data.data);
     } catch (error) {}
   };

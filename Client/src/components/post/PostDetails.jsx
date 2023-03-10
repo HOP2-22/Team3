@@ -14,7 +14,9 @@ function PostDetails({ id }) {
 
   const post = async () => {
     try {
-      const post = await axios.get(`http://localhost:8000/post/${id}`);
+      const post = await axios.get(
+        `https://blog-website-team3.onrender.com/post/${id}`
+      );
       setData(post.data.data);
     } catch (error) {}
   };
@@ -25,7 +27,7 @@ function PostDetails({ id }) {
 
   const createComment = async () => {
     try {
-      await axios.post("http://localhost:8000/comment", {
+      await axios.post("https://blog-website-team3.onrender.com/comment", {
         text: commentValue,
         post: id,
         writerId: user._id,
@@ -37,7 +39,9 @@ function PostDetails({ id }) {
 
   const deleteComment = async (commentId) => {
     try {
-      await axios.delete(`http://localhost:8000/comment/${commentId}`);
+      await axios.delete(
+        `https://blog-website-team3.onrender.com/comment/${commentId}`
+      );
       post();
     } catch (error) {}
   };

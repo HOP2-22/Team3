@@ -11,7 +11,9 @@ const Guard = ({ children }) => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const res = await axios.post("http://localhost:8000/user/");
+        const res = await axios.post(
+          "https://blog-website-team3.onrender.com/user/"
+        );
 
         if (res.data.data.data.exp * 1000 <= Date.now()) {
           logOut();

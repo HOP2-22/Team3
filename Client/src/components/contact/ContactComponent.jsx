@@ -8,7 +8,7 @@ function ContactComponent() {
   const [feedValue, setFeedValue] = useState("");
   const createContact = async () => {
     try {
-      await axios.post("http://localhost:8000/contact", {
+      await axios.post("https://blog-website-team3.onrender.com/contact", {
         name: nameValue,
         email: emailValue,
         text: feedValue,

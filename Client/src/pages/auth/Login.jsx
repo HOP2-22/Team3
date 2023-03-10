@@ -31,7 +31,7 @@ const Login = () => {
   const login = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:8000/user/auth/login",
+        "https://blog-website-team3.onrender.com/user/auth/login",
         {
           email: info.email,
           password: info.password,

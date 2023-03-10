@@ -24,7 +24,9 @@ const Footer = () => {
 
   const handleSubmit = async () => {
     try {
-      const allSubcribe = await axios.get("http://localhost:8000/subscribe");
+      const allSubcribe = await axios.get(
+        "https://blog-website-team3.onrender.com/subscribe"
+      );
 
       const check = allSubcribe.data.data.filter(
         (item) => item.email === subscribedEmailValue
@@ -34,9 +36,12 @@ const Footer = () => {
         return alert("Subscribe хийсэн и-мэйл хаяг байна");
       }
 
-      const response = await axios.post("http://localhost:8000/subscribe", {
-        email: subscribedEmailValue,
-      });
+      const response = await axios.post(
+        "https://blog-website-team3.onrender.com/subscribe",
+        {
+          email: subscribedEmailValue,
+        }
+      );
       alert(response.data.message);
 
       setSubscribedEmailValue("");

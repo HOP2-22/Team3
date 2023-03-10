@@ -37,12 +37,15 @@ const Signup = () => {
 
   const signup = async () => {
     try {
-      await axios.post("http://localhost:8000/user/auth/signup", {
-        firstName: info.firstname,
-        lastName: info.lastname,
-        email: info.email,
-        password: info.password,
-      });
+      await axios.post(
+        "https://blog-website-team3.onrender.com/user/auth/signup",
+        {
+          firstName: info.firstname,
+          lastName: info.lastname,
+          email: info.email,
+          password: info.password,
+        }
+      );
 
       navigate("/auth/login");
     } catch (error) {
