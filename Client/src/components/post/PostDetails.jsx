@@ -4,11 +4,16 @@ import "../../css/PostDetails.css";
 import axios from "axios";
 import { Context } from "../../provider/Context";
 import DeleteIcon from "@mui/icons-material/Delete";
+// import EditIcon from "@mui/icons-material/Edit";
 
 function PostDetails({ id }) {
   const { user } = useContext(Context);
 
   const [commentValue, setCommentValue] = useState("");
+
+  // const [editCommentValue, setEditValueComment] = useState("");
+
+  // const [commentView, setCommentView] = useState(false);
 
   const [data, setData] = useState({});
 
@@ -33,8 +38,22 @@ function PostDetails({ id }) {
         writerId: user._id,
       });
       post();
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  // const editComment = async (commentId) => {
+  //   try {
+  //     await axios.put(`http://localhost:8000/comment/${commentId}`, {
+  //       text: commentValue,
+  //       post: id,
+  //       writerId: user._id,
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const deleteComment = async (commentId) => {
     try {
@@ -85,6 +104,7 @@ function PostDetails({ id }) {
                 if (event.key === "Enter") {
                   event.preventDefault();
                   createComment();
+                  setCommentValue("");
                 }
               }}
             ></textarea>
@@ -106,6 +126,15 @@ function PostDetails({ id }) {
                         {item?.writerId?.firstName}
                         <div>{item?.publishedDate.slice(0, 10)}</div>
                       </div>
+                      {/* {user?._id === item?.writerId?._id && (
+                        <div
+                          onClick={() => {
+                            editComment(item?._id);
+                          }}
+                        >
+                          <EditIcon />
+                        </div>
+                      )} */}
                       {user?._id === item?.writerId?._id ||
                       user?._id === data?.user?._id ? (
                         <div onClick={() => deleteComment(item?._id)}>
