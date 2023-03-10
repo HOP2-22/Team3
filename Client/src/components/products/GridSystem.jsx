@@ -6,6 +6,8 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import axios from "axios";
+import { sliderClasses } from "@mui/material";
+import { margin } from "@mui/system";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -17,7 +19,6 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function ResponsiveGrid() {
   const [data, setData] = useState([]);
-
   const posts = async () => {
     try {
       const res = await axios.get("http://localhost:8000/post");
@@ -38,26 +39,75 @@ export default function ResponsiveGrid() {
         container
         spacing={{ xs: 2, md: 3 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
+        sx={{
+          justifyContent: "center",
+        }}
       >
-        {data.map((item, index) => (
-          <Grid item xs={2} sm={4} md={4} key={index}>
-            <Item sx={{ maxHeight: "440px", maxWidth: "363px" }}>
-              <Link to={"/product/:id"}>
-                <img src={"postImae"} alt="postimage" />
-              </Link>
-              <p style={{ padding: "0px 20px" }}>Title</p>
-              <p>text.slice(0,50)</p>
-              <div className="">
-                <img src={"posterimage"} alt="" />
-                <div className="">
-                  <p>
-                    {"user.firstname"} {"user.lastname"} | {"post.createdAt"}
-                  </p>
+        {data.map((item, index) => {
+          return (
+            <Grid
+              item
+              xs={4}
+              sm={4}
+              md={4}
+              key={index}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Item
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  height: "350px",
+                  maxWidth: "363px",
+                  borderRadius: "15px",
+                }}
+              >
+                <Link to={`/product/${item?._id}`} className="w-full h-[147px]">
+                  <img
+                    src={item?.image}
+                    alt="postimage"
+                    className="h-[147px] w-full object-cover"
+                  />
+                </Link>
+                <p
+                  style={{
+                    padding: "0px 20px",
+                    color: "black",
+                    fontSize: "xx-large",
+                  }}
+                >
+                  {item?.title}
+                </p>
+                <p style={{ color: "black", fontSize: "large" }}>
+                  {item?.text.slice(0, 80)}
+                </p>
+                <div className="bottom">
+                  <img
+                    style={{
+                      width: "44.51px",
+                      height: "45px",
+                      borderRadius: "50%",
+                      objectFit: "cover",
+                    }}
+                    src={item?.user.profileImage}
+                    alt=""
+                  />
+                  <div className="bottomText">
+                    <p style={{ fontSize: "large" }}>
+                      {item?.user.firstName} {item?.user.lastName} |{" "}
+                      {item?.publishDate.slice(0, 10)}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </Item>
-          </Grid>
-        ))}
+              </Item>
+            </Grid>
+          );
+        })}
       </Grid>
     </Box>
   );
