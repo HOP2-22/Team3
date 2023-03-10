@@ -6,8 +6,6 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import axios from "axios";
-import { sliderClasses } from "@mui/material";
-import { margin } from "@mui/system";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -64,7 +62,10 @@ export default function ResponsiveGrid() {
                   borderRadius: "15px",
                 }}
               >
-                <Link to={`/product/${item?._id}`} className="w-full h-[147px]">
+                <Link
+                  to={`/products/${item?._id}`}
+                  className="w-full h-[147px]"
+                >
                   <img
                     src={item?.image}
                     alt="postimage"

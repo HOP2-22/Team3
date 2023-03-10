@@ -13,6 +13,9 @@ function ContactComponent() {
         email: emailValue,
         text: feedValue,
       });
+      setEmailValue("");
+      setFeedValue("");
+      setNameValue("");
     } catch (error) {
       alert(error.response.data.error.message);
     }
