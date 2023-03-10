@@ -6,6 +6,21 @@
     font-size: 48px;
     color: #25313c;
   }
+  .deleteButton {
+    color: red;
+  }
+  .writerNameDate {
+    display: flex;
+    justify-content: space-between;
+  }
+  .writerName {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+  }
+  .commentStyle {
+    width: 100%;
+  }
   .profilePictureStyle {
     width: 56px;
     height: 56px;
